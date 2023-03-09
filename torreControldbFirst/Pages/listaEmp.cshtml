@@ -1,0 +1,53 @@
+﻿@page
+@model torreControldbFirst.Pages.listaEmpModel
+@{
+    ViewData["Title"] = "Lista de empleados";
+    var nivelAcceso = HttpContext.Session.GetString("nivelAcceso");
+    if (string.IsNullOrEmpty(nivelAcceso) || nivelAcceso != "0" && nivelAcceso != "1")
+    {
+        Console.WriteLine("[INFORMACION]: No puede acceder a esta pagina");
+    }
+    else
+    {
+        <h1>@ViewData["Title"]</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nivel de acceso</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var empleado in Model.Empleados)
+                {
+                    <tr>
+                        <form method="post">
+                            <td>
+                                <input type="text" asp-for="@empleado.CodEmpleado" readonly />
+                            </td>
+                            <td>
+                                <input type="number" asp-for="@empleado.NivelAccEmpleado" />
+                            </td>
+                            
+                            @if (nivelAcceso == "0")
+                            {
+						        <td>
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                    <button onclick="location.href='@Url.Page("EliminarEmp", new { CodEmpleado = empleado.CodEmpleado })'" type="button" class="btn btn-danger">Eliminar</button>
+						        </td>
+						    }
+						    <td>
+							    <input type="hidden" asp-for="@empleado.ClaveEmpleado" />
+						    </td>
+                        </form>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
+
+
+                

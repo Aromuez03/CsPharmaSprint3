@@ -1,0 +1,40 @@
+﻿@page
+@model torreControldbFirst.Pages.PedidosModel
+@{
+    var nivelAcceso = HttpContext.Session.GetString("nivelAcceso");
+    if (string.IsNullOrEmpty(nivelAcceso) || nivelAcceso != "0")
+    {
+        Console.WriteLine("[INFORMACION]: No puede acceder a esta pagina");
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>CodEstadoEnvio</th>
+                    <th>CodEstadoPago</th>
+                    <th>CodEstadoDevolucion</th>
+                    <th>CodPedido</th>
+                    <th>CodLinea</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var pedido in Model.Pedidos)
+                {
+                    <tr>
+                        <td>@pedido.CodEstadoEnvio</td>
+                        <td>@pedido.CodEstadoPago</td>
+                        <td>@pedido.CodEstadoDevolucion</td>
+                        <td>@pedido.CodPedido</td>
+                        <td>@pedido.CodLinea</td>
+                        <td>
+                            <button onclick="location.href='@Url.Page("EditPedidos", new { id = pedido.Id })'" type="button" class="btn btn-primary">Editar</button>
+                            <button onclick="location.href='@Url.Page("DeletePedidos", new { id = pedido.Id })'" type="button" class="btn btn-danger">Eliminar</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+    </table>
+    }
+}

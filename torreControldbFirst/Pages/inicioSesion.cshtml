@@ -1,0 +1,83 @@
+﻿@page
+@model torreControldbFirst.Pages.modelo.inicioSesionModel
+@{
+
+
+    <header>
+    </header>
+
+    <body class="body">
+        <form method="post">
+            <div class="letras">
+                <br />
+                <br />
+
+                <div class="text-center mb-2">
+                    <h2>Login</h2>
+                </div>
+                <br />
+                <div class="form-group row mb-2">
+                    <label class="col-sm-4 col-form-label"></label>
+                    <div class="col-sm-4">
+                        <input class="form-control" id="inputUser" name="CodEmpleado" placeholder="UserName" maxlength="7" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label"></label>
+                    <div class="col-sm-4">
+                        <input type="password" class="form-control" id="inputPwd" name="ClaveEmpleado" placeholder="Password" maxlength="7" required>
+                    </div>
+                </div>
+
+                <br />
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label"></label>
+                    <div class="col-sm-4 align-content-center mx-14 px-3">
+                        <button type="submit" class="button" asp-page-handler="Submit">Login</button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+
+
+    </body>
+    <style>
+        .button {
+            border-color: #5dc1b9;
+            color: #ffffff;
+            background-color: #5dc1b9;
+            align-items: center;
+            width: 40%;
+            height: 90%;
+            border-radius: 15px;
+            border-style: double;
+        }
+
+        .div {
+            background-color: #5ccb5f;
+        }
+
+        .letrasCabecera {
+            color: #ffffff;
+        }
+
+        .letras {
+            color: #090909;
+        }
+
+        .mensajesInfo {
+            color: #090909;
+            background-color: #fed353;
+        }
+
+        .body {
+            background-color: #ffffff;
+        }
+
+        .fondoCabecera {
+            background-color: #5ccb5f;
+        }
+    </style>
+}

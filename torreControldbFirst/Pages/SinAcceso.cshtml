@@ -1,0 +1,47 @@
+﻿@page
+@model torreControldbFirst.Pages.SinAccesoModel
+@{
+    <head>
+        <title>Sin Acceso</title>
+    </head>
+    <body>
+        <h1>!Lo sentimos¡</h1>
+        <br>
+        <br>
+        <div class="access-denied">
+            <h2>Usted es un usuario sin acceso</h2>
+            <button class="btn" onclick="window.location.href='/Privacy'">Volver al Inicio</button>
+        </div>
+
+
+            <style>
+            
+            h1{
+                text-align: center;
+                margin-top: 50px;
+            }
+            .access-denied 
+                {
+                    text-align: center;
+                    margin-top: 50px;
+                }
+
+                .access-denied h2 {
+                    color: #5dc1b9;
+                }
+
+                .btn {
+                    background-color: #5dc1b9;
+                    border: none;
+                    color: white;
+                    padding: 12px 24px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                    font-size: 16px;
+                    margin-top: 20px;
+                    cursor: pointer;
+                }
+            </style>
+    </body>
+}

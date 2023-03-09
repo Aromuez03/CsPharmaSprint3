@@ -1,0 +1,41 @@
+﻿@page
+@model torreControldbFirst.Pages.registroArvModel
+@{
+    var nivelAcceso = HttpContext.Session.GetString("nivelAcceso");
+    if (string.IsNullOrEmpty(nivelAcceso) || nivelAcceso != "0")
+    {
+        Console.WriteLine("[INFORMACION]: No puede acceder a esta pagina");
+    }
+    else
+    {
+        <form method="post">
+        <div>
+            <label for="codEmpleado">Código de Empleado</label>
+            <input type="text" id="codEmpleado" name="codEmpleado" required>
+        </div>
+            <br>    
+        <div>
+            <label for="claveEmpleado">Clave de Empleado</label>
+            <input type="password" id="claveEmpleado" name="claveEmpleado" maxlength="7" placeholder="Max 7 caracteres" required>
+        </div>
+        <div>
+            <br>
+            <label for="nivelAccEmpleado">Nivel de Acceso</label>
+            <select id="nivelAccEmpleado" name="nivelAccEmpleado" required>
+                <option value="2">Nivel 2</option>
+            </select>
+            <br>
+        </div>
+            <button type="submit" class="button btn btn-primary" asp-page-handler="RegistroArv">Registrar Empleado</button>
+        </form>
+        @if (TempData["alerta"] != null)
+        {
+            <script>
+                    alert("@TempData["alerta"]");
+            </script>
+        }
+    }
+}
+    
+
+

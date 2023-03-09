@@ -1,0 +1,87 @@
+﻿@page
+@model torreControldbFirst.Pages.EditPedidosModel
+@{
+    ViewData["Title"] = "Editar pedido";
+}
+
+@{
+    var nivelAcceso = HttpContext.Session.GetString("nivelAcceso");
+    if (string.IsNullOrEmpty(nivelAcceso) || nivelAcceso != "0")
+    {
+        Console.WriteLine("[INFORMACION]: No puede acceder a esta pagina");
+    }
+    else
+    {
+        <h4>Lista de Pedidos</h4>
+        <br />
+        <div class="row">
+            <div class="col-md-4">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="editador.Id" />
+                    <div class="form-group">
+                        <label asp-for="editador.CodEstadoEnvio" class="control-label">Estado Envio</label>
+                        <select class="form-control" asp-for="editador.CodEstadoEnvio">
+                            <option class="form-control" value="D">Devuelto</option>
+                            <option class="form-control" value="E1">Enviado Completo</option>
+                            <option class="form-control" value="E2">Enviado Parcial</option>
+                            <option class="form-control" value="P1">En Preparacion</option>
+                            <option class="form-control" value="R">Recibido en Farmacia</option>
+                            <option class="form-control" value="S1">Solicitado</option>
+                            <option class="form-control" value="R1">Registrado en Almacen</option>
+                        </select>
+                        <span asp-validation-for="editador.CodEstadoEnvio" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="editador.CodEstadoPago" class="control-label">Estado de Pago</label>
+                        <select class="form-control" asp-for="editador.CodEstadoPago">
+                            <option class="form-control" value="D1">Emision Cancelada</option>
+                            <option class="form-control" value="D2">Pago Devuelto</option>
+                            <option class="form-control" value="E1">Emitida Factura</option>
+                            <option class="form-control" value="P1">Pagado</option>
+                            <option class="form-control" value="P2">Pago Fraccionado</option>
+                            <option class="form-control" value="R">Rechazado</option>
+                        </select>
+                        <span asp-validation-for="editador.CodEstadoPago" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="editador.CodEstadoDevolucion" class="control-label"> Estado de Devolucion</label>
+                        <select class="form-control" asp-for="editador.CodEstadoDevolucion">
+                            <option class="form-control" value="A1">Aceptada</option>
+                            <option class="form-control" value="D1">Devolucion en Almacen</option>
+                            <option class="form-control" value="D2">Devolucion Finalizada</option>
+                            <option class="form-control" value="R">Rechazado</option>
+                        </select>
+                        <span asp-validation-for="editador.CodEstadoDevolucion" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="editador.CodPedido" class="control-label">Codigo Pedido</label>
+                        <input asp-for="editador.CodPedido" class="form-control" maxlength="16" />
+                        <span asp-validation-for="editador.CodPedido" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="editador.CodLinea" class="control-label"> Codigo de Linea</label>
+                        <input asp-for="editador.CodLinea" class="form-control" maxlength="16" />
+                        <span asp-validation-for="editador.CodLinea" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="editador.MdUuid" class="control-label" hidden>Meta Datos Uuid</label>
+                        <input asp-for="editador.MdUuid" class="form-control" hidden />
+                        <span asp-validation-for="editador.MdUuid" class="text-danger" hidden></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="editador.MdDate" class="control-label" hidden>Meta Datos Fecha</label>
+                        <input asp-for="editador.MdDate" class="form-control" hidden />
+                        <span asp-validation-for="editador.MdDate" class="text-danger" hidden></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Actualizar" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div>
+            <a asp-page="/Pedido">Volver</a>
+        </div>
+    }
+}
